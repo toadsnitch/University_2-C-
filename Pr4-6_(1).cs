@@ -1,5 +1,6 @@
-using System;
+//Найти количество всех делителей
 
+using System;
 
 namespace Total
 {
