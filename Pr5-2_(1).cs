@@ -30,11 +30,13 @@ namespace Total
                 {
                     if (IsPrime(digit))
                     {
-
+                        return (i);
                     }
+                    break;
+                    i--;
                 }
             }
-        
+
 
             static void Main()
             {
