@@ -7,7 +7,7 @@ namespace Total
         class Program
         {
 
-            public static bool IsPrime(int number)
+            private static bool IsPrime(int number)
             {
                 if (number <= 1)
                 {
@@ -23,9 +23,21 @@ namespace Total
                 return true;
             }
 
-            static void Main() 
+            private static int NearDigit(int digit)
             {
-                bool flag = false;
+                int i = digit;
+                while (i > 1)
+                {
+                    if (IsPrime(digit))
+                    {
+
+                    }
+                }
+            }
+        
+
+            static void Main()
+            {
                 int totalComposite = 0, nearestA = 0;
                 ushort count = 0;
                 Console.Write("a = ");
@@ -42,11 +54,6 @@ namespace Total
                     {
                         Console.Write(i + " ");
                         count++;
-                        if (flag == false && i < A)
-                        {
-                            nearestA = i;
-                            flag = true;
-                        }
                     }
                     else
                     {
@@ -55,11 +62,14 @@ namespace Total
                             totalComposite += i;
                         }
                     }
+
+
+                    Console.WriteLine("\nКоличество всех простых чисел на отрезке [a,b]: {0}", count);
+                    Console.WriteLine("\nБлижайшее предшествующее простое число к числу А: {0}", nearestA(NearDigit);
+                    Console.WriteLine("\nСумма всех составых чисел на отрезке[a, b] {0}", totalComposite);
                 }
-                Console.WriteLine("\nКоличество всех простых чисел на отрезке [a,b]: {0} \n" +
-                    "Сумма всех составых чисел на отрезке [a,b]: {1} \n" +
-                    "Ближайшее предшествующее простое число к числу А: {2} \n", count, totalComposite, nearestA);
-                   
+
+
             }
         }
     }
