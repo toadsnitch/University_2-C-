@@ -30,24 +30,25 @@ namespace Total
                 {
                     if (IsPrime(digit))
                     {
-                        return (i);
+                        return i;
                     }
-                    break;
                     i--;
                 }
+                return 0;
+
             }
 
 
             static void Main()
             {
-                int totalComposite = 0, nearestA = 0;
+                int totalComposite = 0;
                 ushort count = 0;
                 Console.Write("a = ");
                 int a = int.Parse(Console.ReadLine());
                 Console.Write("b = ");
                 int b = int.Parse(Console.ReadLine());
                 Console.Write("A = ");
-                int A = int.Parse(Console.ReadLine());
+                int nearestA = int.Parse(Console.ReadLine());
 
                 Console.Write("\nВсе простые числа на отрезке: ");
                 for (int i = b; i >= a; i--)
@@ -65,9 +66,8 @@ namespace Total
                         }
                     }
 
-
                     Console.WriteLine("\nКоличество всех простых чисел на отрезке [a,b]: {0}", count);
-                    Console.WriteLine("\nБлижайшее предшествующее простое число к числу А: {0}", nearestA(NearDigit);
+                    Console.WriteLine("\nБлижайшее предшествующее простое число к числу А: {0}", NearDigit(nearestA));
                     Console.WriteLine("\nСумма всех составых чисел на отрезке[a, b] {0}", totalComposite);
                 }
 
