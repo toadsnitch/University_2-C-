@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Total
 {
@@ -25,19 +26,22 @@ namespace Total
 
             private static int NearDigit(int digit)
             {
+                bool flag = false;
                 int i = digit;
                 while (i > 1)
                 {
-                    if (IsPrime(digit))
+                    if (IsPrime(i))
                     {
-                        return i;
+                        flag = true;
+                        break;
                     }
                     i--;
                 }
-                return 0;
+                
+                if (flag == true) { return i; }
 
+                else { return 0; }
             }
-
 
             static void Main()
             {
@@ -51,7 +55,7 @@ namespace Total
                 int nearestA = int.Parse(Console.ReadLine());
 
                 Console.Write("\nВсе простые числа на отрезке: ");
-                for (int i = b; i >= a; i--)
+                for (int i = a; i <= b; i++)
                 {
                     if (IsPrime(i))
                     {
@@ -65,13 +69,10 @@ namespace Total
                             totalComposite += i;
                         }
                     }
-
-                    Console.WriteLine("\nКоличество всех простых чисел на отрезке [a,b]: {0}", count);
-                    Console.WriteLine("\nБлижайшее предшествующее простое число к числу А: {0}", NearDigit(nearestA));
-                    Console.WriteLine("\nСумма всех составых чисел на отрезке[a, b] {0}", totalComposite);
                 }
-
-
+                Console.WriteLine("\nКоличество всех простых чисел на отрезке [a,b]: {0}", count);
+                Console.WriteLine("Ближайшее предшествующее простое число к числу А: {0}", NearDigit(nearestA));
+                Console.WriteLine("Сумма всех составых чисел на отрезке[a, b] {0}", totalComposite + "\n");
             }
         }
     }
