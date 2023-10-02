@@ -1,0 +1,67 @@
+/*
+Дана последовательность целых чисел.
+Замечание. Задачи из данного пункта решить двумя способами, используя одномерный массив, а затем
+двумерный. Размерность массива вводится с клавиатуры.
+1. Заменить все положительные элементы противоположными им числами
+*/
+
+using System;
+
+namespace ConsoleApp2
+{
+    internal class Program
+    {
+        //Методы для одномерных массивов
+        static void ReadArray_OneDimensional(int[] MyArray_OneDimensiona)
+        {
+            
+        }
+
+        static void ChangeArray_OneDimensional(int[] MyArray_OneDimensiona)
+        {
+            for (int i = 0; i < MyArray_OneDimensional.Lengh; i++)
+            {
+                if (MyArray_OneDimensional[i] > 0) { MyArray_OneDimensional[i] = -1 * i; }
+               
+            }
+        }
+
+
+        static void PrintArray_OneDimensional(int[] MyArray_OneDimensiona)
+        {
+            foreach (int elem in MyArray_OneDimensiona)
+            {
+                Console.Write("{0}", elem);
+            }
+            Console.WriteLine();
+        }
+
+
+
+
+
+
+
+
+        static void Main()
+        {
+            Console.Write("1 если одномерный массив, 2 если двумерный: ");
+            int v = int.Parse(Console.ReadLine());
+            if (v == 1)
+            {
+                Console.WriteLine("n = ");
+                int n = int.Parse(Console.ReadLine());
+                int [] MyArray_OneDimensional = new int[n];
+            }
+            else
+            {
+                Console.Write("Rows = ");
+                int rows = int.Parse(Console.ReadLine());
+                Console.Write("Cols = ");
+                int cols = int.Parse(Console.ReadLine());
+                int[,] MyArray_TwoDimensional = new int[rows, cols];
+            }
+                                  
+        }
+    }
+}
