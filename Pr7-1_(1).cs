@@ -11,7 +11,7 @@ namespace ConsoleApp2
 {
     internal class Program
     {
-        //Methods for one-dimensional arrays
+        //Methods for one-dimensional array
         static void ReadArray_OneDimensional(int[] MyArray_OneDimensional)
         {
             Console.WriteLine("Enter the array elements: ");
@@ -39,7 +39,7 @@ namespace ConsoleApp2
             Console.WriteLine();
         }
 
-        //Methods for two-dimensional arrays
+        //Methods for two-dimensional array
         static void ReadArray_TwoDimensional(int[,] MyArray_TwoDimensional)
         {
             Console.WriteLine("Enter the array elements: ");
@@ -76,7 +76,48 @@ namespace ConsoleApp2
             }
         }
 
+        //Methods for jagged array
+        static void ReadArray_Jagged(out int[][] MyArray_Jagged)
+        {
+            Console.Write("Number of rows = ");
+            int rows = int.Parse(Console.ReadLine());
+            MyArray_Jagged = new int[rows][];
+            for (int i = 0; i < MyArray_Jagged.Length; i++)
+            {
+                Console.Write("Enter the number of items in line {0}: ", i);
+                int n = int.Parse(Console.ReadLine());
+                MyArray_Jagged[i] = new int[n];
+                for (int j = 0; j < MyArray_Jagged[i].Length; j++)
+                {
+                    Console.Write("a[{0}][{1}]= ", i, j);
+                    MyArray_Jagged[i][j] = int.Parse(Console.ReadLine());
+                }
+            }
+        }
 
+        static void ChangeArray_Jagged(int[][] MyArray_Jagged)
+        {
+            for (int i = 0; i < MyArray_Jagged.Length; i++)
+            {
+                for (int j = 0; j < MyArray_Jagged[i].Length; j++)
+                {
+                    if (MyArray_Jagged[i][j] > 0) { MyArray_Jagged[i][j] = MyArray_Jagged[i][j] * (-1); }
+                }
+            }
+        }
+
+        static void PrintArray_Jagged(int[][] MyArray_Jagged)
+        {
+            Console.WriteLine();
+            for (int i = 0; i < MyArray_Jagged.Length; i++)
+            {
+                for (int j = 0; j < MyArray_Jagged[i].Length; j++)
+                {
+                    Console.Write("{0} ", MyArray_Jagged[i][j]);
+                }
+                Console.WriteLine();
+            }
+        }
 
 
         static void Main()
@@ -107,8 +148,15 @@ namespace ConsoleApp2
             }
             else
             {
-                // осталось сделать ступенчатый
+                int[][] MyArray_Jagged;
+
+                ReadArray_Jagged(out MyArray_Jagged);
+                ChangeArray_Jagged(MyArray_Jagged);
+                PrintArray_Jagged(MyArray_Jagged);
             }
         }
     }
 }
+
+
+
