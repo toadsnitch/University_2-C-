@@ -76,7 +76,6 @@ namespace ConsoleApp2
             int[][] Array = Input(out rows, out min_index, out min_length);
             Add(Array, ref min_index, ref min_length, ref rows);
             Print(Array);
-            
         }
     }
 }
