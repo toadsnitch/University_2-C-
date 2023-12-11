@@ -1,0 +1,72 @@
+using System;
+using System.IO;
+
+namespace MyProgram
+{
+    struct SPoint //описание структуры    
+    {
+        public int x, y; //поля структуры        
+        public SPoint(int x, int y) //конструктор структуры
+
+        {
+            this.x = x;
+            this.y = y;
+        }
+        //методы структуры        
+        public void Show()
+        {
+            Console.WriteLine("({0}, {1})", x, y);
+        }
+        public double Distance()
+        {
+            return Math.Sqrt(x * x + y * y);
+        }
+    }
+
+    class Program
+    {
+        static public SPoint[] Input()
+        {
+            using (StreamReader fileIn = new StreamReader("input.txt"))
+            {
+                int n = int.Parse(fileIn.ReadLine());
+                SPoint[] ar = new SPoint[n]; //описание массива структур            
+                for (int i = 0; i < n; i++)
+                {
+                    string[] text = fileIn.ReadLine().Split(' ');
+                    ar[i] = new SPoint(int.Parse(text[0]), int.Parse(text[1])); //вызов конструктора структуры            
+                }
+                return ar; //в качестве результата метод возвращает ссылку на массив структур        
+            }
+        }
+
+        static void Print(SPoint[] array) //выводим данные на экран
+        {
+            foreach (SPoint item in array)
+            {
+                item.Show(); //обращается к методу экземпляра структуры
+            }
+        }
+        //Находим точку с максимальным расстоянием от начала координат
+        static SPoint FindMaxDistancePoint(SPoint[] array)
+        {
+            SPoint maxPoint = array[0];
+            foreach (SPoint point in array)
+            {
+                if (point.Distance() > maxPoint.Distance())
+                {
+                    maxPoint = point;
+                }
+            }
+            return maxPoint;
+        }
+
+        static void Main()
+        {
+            SPoint[] array = Input();
+            SPoint maxDistancePoint = FindMaxDistancePoint(array);
+            Console.WriteLine("Точка с максимальным расстоянием от начала координат: ");
+            maxDistancePoint.Show();
+        }
+    }
+}
