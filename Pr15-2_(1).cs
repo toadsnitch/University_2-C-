@@ -10,11 +10,10 @@
 Вывести в новый файл информацию о студентах, окончивших заданную школу,
 отсортировав их по году рождения.
 */
-
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace MyProgram
 {
@@ -29,13 +28,15 @@ namespace MyProgram
             public string Address { get; set; }
             public int School { get; set; }
         }
+
         static void Main()
         {
-            using (StreamReader fileIn = new StreamReader("input.txt"/*, Encoding.GetEncoding(1251)*/))
+            using (StreamReader fileIn = new StreamReader("input.txt"))
             {
                 using (StreamWriter fileOut = new StreamWriter("output.txt", false))
                 {
                     List<People> students = new List<People>();
+                    int desiredSchool = Convert.ToInt32(fileIn.ReadLine()); //Номер школы, для которой нужно вывести студентов
                     while (!fileIn.EndOfStream)
                     {
                         string[] data = fileIn.ReadLine().Split(' ');
@@ -48,22 +49,23 @@ namespace MyProgram
                         student.School = int.Parse(data[5]);
                         students.Add(student);
                     }
-                    var query =
+
+                    var filteredStudents =
                         from student in students
-                        group student by student.School;
-                    foreach (var items in query)
+                        where student.School == desiredSchool
+                        orderby student.Year
+                        select student;
+
+                    foreach (var student in filteredStudents)
                     {
-                        fileOut.WriteLine("Должность (школа) {0}:", items.Key);
-                        foreach (var item in items)
-                        {
-                            fileOut.WriteLine("{0} {1} {2} {3} {4} {5}", item.Surname, item.Name, item.Patronymic, item.Year, item.Address, item.School);
-                        }
+                        fileOut.WriteLine("{0} {1} {2} {3} {4} {5}", student.Surname, student.Name, student.Patronymic, student.Year, student.Address, student.School);
                     }
                 }
             }
         }
     }
 }
+
 
 /*
 Аширов Егор Игоревич 2004 Ветеринарная_8 32
