@@ -28,7 +28,7 @@ struct SPoint
     //результат на экран 
     public void show()
     {
-        Console.WriteLine("{0},{1}", x, y);
+        Console.WriteLine("{0} {1}", x, y);
     }
 }
 
