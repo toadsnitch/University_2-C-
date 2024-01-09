@@ -19,7 +19,7 @@ namespace MyProgram
 {
     class Program
     {
-        class People
+        class People //представляет структуру данных для хранения информации о студентх
         {
             public string Surname { get; set; }
             public string Name { get; set; }
@@ -39,7 +39,8 @@ namespace MyProgram
                     int desiredSchool = Convert.ToInt32(fileIn.ReadLine()); //Номер школы, для которой нужно вывести студентов
                     while (!fileIn.EndOfStream)
                     {
-                        string[] data = fileIn.ReadLine().Split(' ');
+                        string[] data = fileIn.ReadLine().Split(' '); //считываем построчно
+                        //создаем новый объект People для каждого студента, заполняем его данными и добавляем в список students
                         People student = new People();
                         student.Surname = data[0];
                         student.Name = data[1];
@@ -52,8 +53,15 @@ namespace MyProgram
 
                     var filteredStudents =
                         from student in students
-                        where student.School == desiredSchool
-                        orderby student.Year
+                        //Метод расширения Where, аналогично предложению where позволят проводить фильтрацию данных некоторого источника. 
+                       
+                        where student.School == desiredSchool // запрос фильтрует студентов из списка students,
+                                                              // оставляя только тех, кто окончил заданную школу, и затем сортирует их по году рождения.
+                        
+                        orderby student.Year //Метод расширения OrderBy также как и предложение orderby в интегрированном
+                                             //запросе позволяет отсортировать данные, извлеченные из источника данных
+
+                        //чтобы сортировка данных производилась по убыванию значения - OrderByDescending
                         select student;
 
                     foreach (var student in filteredStudents)
@@ -68,6 +76,7 @@ namespace MyProgram
 
 
 /*
+32
 Аширов Егор Игоревич 2004 Ветеринарная_8 32
 Киряев Максим Степанович 2005 Комсомольская_5А 32
 Соловьев Ян Ярославович 2004 Ломоносова_21 6
