@@ -19,7 +19,7 @@ namespace MyProgram
 {
     class Program
     {
-        class People //представляет структуру данных для хранения информации о студентх
+        class People //структура данных для хранения информации о студентх
         {
             public string Surname { get; set; }
             public string Name { get; set; }
@@ -53,15 +53,16 @@ namespace MyProgram
 
                     var filteredStudents =
                         from student in students
-                        //Метод расширения Where, аналогично предложению where позволят проводить фильтрацию данных некоторого источника. 
-                       
+                        //Шаблон from-where-select используется для выборки из источника данных, удовлетворяющих некоторому условию
+
                         where student.School == desiredSchool // запрос фильтрует студентов из списка students,
                                                               // оставляя только тех, кто окончил заданную школу, и затем сортирует их по году рождения.
                         
-                        orderby student.Year //Метод расширения OrderBy также как и предложение orderby в интегрированном
-                                             //запросе позволяет отсортировать данные, извлеченные из источника данных
+                        orderby student.Year /*В некоторых случаях целесообразно возвращать отсортированную последовательность данных.
+                                             Это можно сделать с помощью предложения orderby.*/
 
-                        //чтобы сортировка данных производилась по убыванию значения - OrderByDescending
+                        //чтобы сортировка данных производилась по убыванию сортируемой величины необходимо указать ключевое слово descending
+                        //Например orderby n descending
                         select student;
 
                     foreach (var student in filteredStudents)
