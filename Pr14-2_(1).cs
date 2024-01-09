@@ -31,30 +31,34 @@ namespace ConsoleApp1
         {
             //Поля структуры
             public string Name;
+            public string Surname;
+            public string Patronymic;
             public string HomeAdress;
-            public string SchoolName;
+            public int SchoolName;
             public int Year;
-            
+
             //конструктор структуры (для инициализация полей в мэйне)
-            public Student(string Name, string HomeAdress, string SchoolName, int Year)
+            public Student(string Name, string Surname, string Patronymic, string HomeAdress, int SchoolName, int Year)
             {
                 this.Name = Name;
+                this.Surname = Surname;
+                this.Patronymic = Patronymic;
                 this.HomeAdress = HomeAdress;
                 this.SchoolName = SchoolName;
                 this.Year = Year;
             }
-            
+
             //Метод сортирует по году рождения
             public int CompareTo(Student stud)
             {
                 if (this.Year == stud.Year)
-                    return 0;
+                    return 0; // 0 – если текущие экземпляры равны и параметр равны;
                 else
                 {
                     if (this.Year < stud.Year)
-                        return 1;
+                        return 1; //положительное число, если текущий экземпляр больше параметра.
                     else
-                        return -1;
+                        return -1; // отрицательное число, если текущий экземпляр меньше параметра;
                 }
             }
         }
@@ -63,17 +67,17 @@ namespace ConsoleApp1
         {
             using (StreamReader fileIn = new StreamReader("input.txt"))
             {
-                int n = int.Parse(fileIn.ReadLine()); // считывание кол-во
+                int n = int.Parse(fileIn.ReadLine()); // считывание количества студентов 
                 Student[] student = new Student[n]; // создание массива
-                string schoolFilter = "School51";//школа для отбора
+                int schoolFilter = 32; //школа для отбора
                 int count = 0; // кол-во студентов, прошедшие сортировку
 
 
                 for (int i = 0; i < n; i++)
                 {
                     string[] st = fileIn.ReadLine().Split(' ');
-                    student[i] = new Student(st[0], st[1], st[2], int.Parse(st[3]));
-                    if (st[2] == schoolFilter)
+                    student[i] = new Student(st[0], st[1], st[2], st[3], int.Parse(st[4]), int.Parse(st[5]));
+                    if (int.Parse(st[4]) == schoolFilter)
                         count++;
                 }
 
@@ -93,10 +97,16 @@ namespace ConsoleApp1
                 using (StreamWriter fileOut = new StreamWriter("output.txt"))
                 {
                     foreach (Student c in sortStudent)
-                        fileOut.WriteLine(c.Name + ' ' + c.HomeAdress + ' ' + c.SchoolName + ' ' + c.Year);
+                        fileOut.WriteLine(c.Name + ' ' + c.Surname + ' ' + c.Patronymic + ' ' + c.HomeAdress + ' ' + c.SchoolName + ' ' + c.Year);
                 }
             }
         }
-
     }
 }
+
+/*
+3
+Аширов Егор Игоревичь Степная_32 32 2004 
+Аширов Егор Игорстепанов Степная_32 42 2005
+Локальный Егор Игоревичь Степная_32 32 2006 
+*/
